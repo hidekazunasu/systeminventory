@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "P+WJicW/UGZ8KRlZ61eGvTIc7Cc55vqA5dzq0J6obJw=",
+  "Source": "systeminventory_sample",
+  "BasePath": "_content/systeminventory_sample",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

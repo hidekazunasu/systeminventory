@@ -1,0 +1,43 @@
+<div class="d-flex flex-row bd-highlight mb-9">
+  <div class="p-2 w-100 bd-highlight">
+    <div class="input-group mb-12" *ngIf="depart.Id == ''">
+      <span class="input-group-text">ID</span>
+      <input type="text" class="form-control" [(ngModel)]="Id">
+    </div>
+
+    <div class="input-group mb-12">
+      <span class="input-group-text">情報システム名</span>
+      <input type="text" class="form-control" [(ngModel)]="Name">
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">概要</span>
+      <input type="text" class="form-control" [(ngModel)]="Detail">
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">システム区分</span>
+      <select [(ngModel)]="SystemCategory" name="itemSystemCategory" id="itemSystemCategory"
+        (change)="ChangeSystemCategory($event)" class="form-control">
+        <option *ngFor="let item of CategoryList" [value]="item.Id">
+          {{item.name}}
+        </option>
+      </select>
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">進行管理区分</span>
+      <select [(ngModel)]="ProcessControl" name="itemProcessControl" id="itemProcessControl"
+        (change)="ChangeProcessControl($event)" class="form-control">
+        <option *ngFor="let item of ProcessControlList" [value]="item.Id">
+          {{item.Name}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+</div>
+<button (click)="addSystem()" *ngIf="depart.Id == ''" class="btn btn-primary">
+  Add
+</button>
+
+<button (click)="updateSystem()" *ngIf="depart.Id !=''" class="btn btn-primary">
+  Update
+</button>
