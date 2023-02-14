@@ -1,0 +1,44 @@
+# Docker-composeのバージョン
+version: "3.4"
+
+# サービス
+services:
+  node:
+    # サービス名
+    build:
+      context: . #コピーするファイル
+      dockerfile: "./clientapp/Dockerfile" #Dockerファイルのパスを指定
+      target: base # Basa
+    container_name: clientapp #コンテナ名を名付ける(名前は自由)
+    ports:
+      - "4200:4200" # ホストOSのポート:Docker内のポート
+    command: sh -c "ng serve --host 0.0.0.0 --poll=1000" # Angularを起動する。
+    volumes:
+      - ./clientapp:/clientapp # ホストOSからコピーするボリューム
+      - ./clientapp/node_modules:/clientapp/node_modules
+    tty: true
+  api:
+    image: api2 #Dockerイメージの名称をつける
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    container_name: api #コンテナ名
+    ports:
+      - 5293:5293
+  db:
+    image: postgres:12
+    container_name: postgres
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: user01
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db01
+    volumes:
+      - postgresvolume1:/var/lib/postgresql/data
+      #- ./psql/init:/docker-entrypoint-initdb.d/ #Dockerのビルド時にフォルダのsqlファイルを実行してテーブルを作成している。
+volumes:
+  node_modules:
+    driver: "local"
+  postgresvolume1:
+    external: true
