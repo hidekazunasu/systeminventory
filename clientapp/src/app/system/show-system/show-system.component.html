@@ -1,27 +1,32 @@
 <button type="button" class="btn btn-primary m-2 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal"
   (click)="addClick()">
+  <!-- 情報システム追加ボタン -->
   情報システム追加
 </button>
 
-<!-- Modal -->
+<!-- Modal（ポップアップダイアログ） -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <!-- ポップアップダイアログのタイトル -->
         <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+        <!-- ポップアップダイアログを閉じるためのボタン -->
         <button type="button" #closebutton class="close" data-bs-dismiss="modal" aria-label="Close"
           (click)="closeClick()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <!-- システム追加・編集フォームを表示するためのコンポーネント -->
         <app-add-edit-system [depart]="depart" *ngIf="ActivateAddEditSystemComp" (newItemEvent)="callback($event)">
         </app-add-edit-system>
       </div>
     </div>
   </div>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -89,7 +94,7 @@
       </th>
       <th>
         <div class="d-flex flex-row">
-          <button type="button" class="btn btn-light" (click)="sortResult('detail',true)">
+          <button type="button" class="btn btn-light" (click)="sortResult('systemCategory',true)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
               <path
@@ -97,7 +102,7 @@
             </svg>
           </button>
 
-          <button type="button" class="btn btn-light" (click)="sortResult('detail',false)">
+          <button type="button" class="btn btn-light" (click)="sortResult('systemCategory',false)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
               <path
@@ -109,7 +114,7 @@
       </th>
       <th>
         <div class="d-flex flex-row">
-          <button type="button" class="btn btn-light" (click)="sortResult('systemCategory',true)">
+          <button type="button" class="btn btn-light" (click)="sortResult('processControl',true)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
               <path
@@ -124,6 +129,7 @@
                 d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z" />
             </svg>
           </button>
+
         </div>
         進行管理区分
       </th>

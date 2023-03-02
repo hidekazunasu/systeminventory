@@ -7,36 +7,40 @@ import { ApiserviceService } from 'src/app/apiservice.service';
   styleUrls: ['./show-system.component.css']
 })
 export class ShowSystemComponent implements OnInit {
-  SystemList: any = [];
-  ModalTitle = "";
-  ActivateAddEditSystemComp: boolean = false;
-  depart: any;
+  SystemList: any = []; // システムリスト
+  ModalTitle = ""; // モーダルタイトル
+  ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
+  depart: any; // システムデータ
 
-  SystemIdFilter = "";
-  SystemNameFilter = "";
-  SystemListWithoutFilter: any = [];
+  SystemIdFilter = ""; // システムIDフィルター
+  SystemNameFilter = ""; // システム名フィルター
+  SystemListWithoutFilter: any = []; // フィルター前のシステムリスト
   @ViewChild('closebutton') closebutton?: ElementRef;
 
   ngOnInit(): void {
-
-    this.refreshDepList();
+    this.refreshDepList(); // 初期表示時にシステムリストを更新する
   }
+
+  // システム追加・編集画面のコールバック
   callback(value: string) {
     console.log("callback called");
     if (this.closebutton !== undefined) {
-      this.closebutton.nativeElement.click();
-      this.refreshDepList();
+      this.closebutton.nativeElement.click(); // モーダルを閉じる
+      this.refreshDepList(); // システムリストを更新する
     } else {
       console.log("closebutton undefined");
     }
-
   }
+
+  // システムリストを更新する
   refreshDepList() {
     this.service.getSystemList().subscribe(data => {
       this.SystemList = data;
-      this.SystemListWithoutFilter = data;
+      this.SystemListWithoutFilter = data; // フィルター前のシステムリストを更新する
     });
   }
+
+  // システムリストをソートする
   sortResult(prop: any, asc: any) {
     this.SystemList = this.SystemListWithoutFilter.sort(function (a: any, b: any) {
       if (asc) {
@@ -47,6 +51,8 @@ export class ShowSystemComponent implements OnInit {
       }
     });
   }
+
+  // システムリストをフィルターする
   FilterFn() {
     var SystemIdFilter = this.SystemIdFilter;
     var SystemNameFilter = this.SystemNameFilter;
@@ -61,13 +67,15 @@ export class ShowSystemComponent implements OnInit {
       }
     );
   }
+
+  // システム追加ボタンがクリックされた場合
   addClick() {
     this.depart = {
       Id: "",
       Name: ""
     }
     this.ModalTitle = "システム追加";
-    this.ActivateAddEditSystemComp = true;
+    this.ActivateAddEditSystemComp = true; // システム追加・編集画面を表示する
   }
   editClick(item: any) {
     this.depart = item;
