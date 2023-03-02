@@ -11,12 +11,11 @@ public class inHouseSystemContext : DbContext
     {
     }
 
-    public inHouseSystemContext(DbContextOptions<inHouseSystemContext>
-    options) : base(options)
-    {
+    public inHouseSystemContext(DbContextOptions<inHouseSystemContext> options) : base(options) { }
 
-    }
+    public virtual DbSet<inHouseSysmteList>? Sysmtes { get; set; }
+    public virtual DbSet<ProcessControls>? ProcessControls { get; set; }
 
-    public DbSet<inHouseSysmteList>? Sysmtes { get; set; }
+    public virtual DbSet<SystemCategories>? SystemCategorie { get; set; }
 
 }

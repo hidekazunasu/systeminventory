@@ -1,0 +1,11 @@
+insert into system values ('N00001', 'システム01', '詳細1', '管理区分1', 1); 
+insert into system values('N00002', 'システム02', '詳細2', '管理区分1', 0); 
+insert into system values('N00003', 'システム03', '詳細3', '管理区分2', 1); 
+insert into system values('N00004', 'システム04', '詳細4', '管理区分1', 0); 
+insert into system values('N00005', 'システム05', '詳細5', '管理区分2', 0); 
+insert into system values('N00006', 'システム06', '詳細6', '管理区分1', 0); 
+insert into system values('N00007', 'システム07', '詳細11', '管理区分2', 0); 
+insert into system values('N00008', 'システム08', '詳細111', '管理区分1', 0); 
+insert into system values('N00009', 'システム09', '詳細13', '管理区分3', 0); 
+insert into system values('N00010', 'システム10', '詳細122', '管理区分3', 0); 
+insert into system values('N00011', 'システム11', '詳細133', '管理区分3', 0); 

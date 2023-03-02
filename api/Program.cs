@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDbContext<inHouseSystemContext>
-(
-    options => options.UseInMemoryDatabase(
-        builder.Configuration.GetConnectionString("inHouseSystemContext"))
-
-);
+builder.Services.AddDbContext<inHouseSystemContext>(options =>
+{
+    var path = builder.Configuration.GetConnectionString("inHouseDbConnection");
+    options.UseSqlite(path);
+});
 
 builder.Services.AddControllers();
 // Add services to the container.
@@ -26,7 +25,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
+app.UseRouting();
+
 app.UseHttpsRedirection();
+
+app.UseCors(x => x.AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowAnyOrigin());
+app.UseEndpoints(x => x.MapControllers());
 
 
 app.Run();

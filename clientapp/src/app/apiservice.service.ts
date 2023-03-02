@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiserviceService {
-  readonly apiUrl = 'http://localhost:22228/api/InformationSystems/';
-  readonly apiUrl2 = 'http://localhost:22228/api/ProcessControls/';
-  readonly apiUrl3 = 'http://localhost:22228/api/SystemCategories/';
+  readonly apiUrl = 'https://localhost:7043/inHouseSysmte/api/inHouseSystem';
+  readonly apiUrl2 = 'https://localhost:7043/Process';
+  readonly apiUrl3 = 'https://localhost:7043/inHouseSysmte/api/inHouseSystem';
   constructor(private http: HttpClient) { }
 
 
