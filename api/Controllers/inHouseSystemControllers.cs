@@ -1,7 +1,6 @@
-using inHouseSysmte.Models;
-using inHouseSysmte.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using systeminventory_sample.Models.DbFirst;
 
 namespace inHouseSysmte.Controllers;
 
@@ -10,9 +9,9 @@ namespace inHouseSysmte.Controllers;
 
 public class inHouseSysmteController : ControllerBase
 {
-    private readonly inHouseSystemContext _context;
+    private readonly inHouseDbContext _context;
 
-    public inHouseSysmteController(inHouseSystemContext context)
+    public inHouseSysmteController(inHouseDbContext context)
     {
         _context = context;
     }
@@ -20,16 +19,16 @@ public class inHouseSysmteController : ControllerBase
     [HttpGet]
     [Route("api/inHouseSystem")]
 
-    public async Task<ActionResult<IEnumerable<inHouseSysmteList>>> Get()
+    public async Task<ActionResult<IEnumerable<inHouseSystem>>> Get()
     {
-        var data = await _context.Sysmtes.ToListAsync();
+        var data = await _context.Systems.ToListAsync();
         return data;
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<inHouseSysmteList>> GetSystem(string id)
+    public async Task<ActionResult<inHouseSystem>> GetSystem(string id)
     {
-        var system = await _context.Sysmtes.FindAsync(id);
+        var system = await _context.Systems.FindAsync(id);
         if (system == null)
         {
             return NotFound();
@@ -37,42 +36,43 @@ public class inHouseSysmteController : ControllerBase
         return system;
 
     }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutSystem(string id, inHouseSysmteList system)
-    {
-        if (id != system.Id)
-        {
-            return BadRequest();
-        }
-        _context.Entry(system).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
+    /*
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutSystem(string id, inHouseSysmteList system)
         {
             if (id != system.Id)
             {
                 return BadRequest();
             }
-            else
+            _context.Entry(system).State = EntityState.Modified;
+
+            try
             {
-                throw;
+                await _context.SaveChangesAsync();
             }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (id != system.Id)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
         }
-        return NoContent();
-    }
 
-    [HttpPost]
-    public async Task<ActionResult<inHouseSysmteList>> PostSystem(inHouseSysmteList system)
-    {
-        _context.Sysmtes.Add(system);
-        await _context.SaveChangesAsync();
+        [HttpPost]
+        public async Task<ActionResult<inHouseSysmteList>> PostSystem(inHouseSysmteList system)
+        {
+            _context.Sysmtes.Add(system);
+            await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(Get), new { id = system.Id }, system);
-    }
+            return CreatedAtAction(nameof(Get), new { id = system.Id }, system);
+        }
+        */
 
 
 }

@@ -1,8 +1,6 @@
-using System.Net;
-using inHouseSysmte.Models;
-using inHouseSysmte.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using systeminventory_sample.Models.DbFirst;
 
 namespace inHouseSysmte.Controllers;
 
@@ -11,15 +9,15 @@ namespace inHouseSysmte.Controllers;
 
 public class ProcessController : ControllerBase
 {
-    private readonly inHouseSystemContext _cotext;
+    private readonly inHouseDbContext _cotext;
 
-    public ProcessController(inHouseSystemContext context)
+    public ProcessController(inHouseDbContext context)
     {
         _cotext = context;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProcessControls>>> Get()
+    public async Task<ActionResult<IEnumerable<ProcessControl>>> Get()
     {
         var data = await _cotext.ProcessControls.ToListAsync();
         return data;

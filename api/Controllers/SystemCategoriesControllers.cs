@@ -1,6 +1,5 @@
-using System.Net;
+using systeminventory_sample.Models.DbFirst;
 using inHouseSysmte.Models;
-using inHouseSysmte.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,17 +10,17 @@ namespace inHouseSysmte.Controllers;
 
 public class SystemCategoriesController : ControllerBase
 {
-    private readonly inHouseSystemContext _cotext;
+    private readonly inHouseDbContext _cotext;
 
-    public SystemCategoriesController(inHouseSystemContext context)
+    public SystemCategoriesController(inHouseDbContext context)
     {
         _cotext = context;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<SystemCategories>>> Get()
+    public async Task<ActionResult<IEnumerable<SystemCategory>>> Get()
     {
-        var data = await _cotext.SystemCategorie.ToListAsync();
+        var data = await _cotext.SystemCategories.ToListAsync();
         return data;
     }
 }

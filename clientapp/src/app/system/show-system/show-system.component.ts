@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
 
 @Component({
@@ -21,13 +21,12 @@ export class ShowSystemComponent implements OnInit {
 
     this.refreshDepList();
   }
-  callback(value:string){
+  callback(value: string) {
     console.log("callback called");
-    if(this.closebutton!==undefined)
-    {
+    if (this.closebutton !== undefined) {
       this.closebutton.nativeElement.click();
       this.refreshDepList();
-    }else{
+    } else {
       console.log("closebutton undefined");
     }
 
@@ -54,10 +53,10 @@ export class ShowSystemComponent implements OnInit {
 
     this.SystemList = this.SystemListWithoutFilter.filter(
       function (el: any) {
-        return el.Id.toString().toLowerCase().includes(
+        return el.id.toString().toLowerCase().includes(
           SystemIdFilter.toString().trim().toLowerCase()
         ) &&
-          el.Name.toString().toLowerCase().includes(
+          el.name.toString().toLowerCase().includes(
             SystemNameFilter.toString().trim().toLowerCase())
       }
     );

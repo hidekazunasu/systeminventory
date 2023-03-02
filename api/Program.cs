@@ -1,10 +1,11 @@
-using inHouseSysmte.Data;
+using systeminventory_sample.Models.DbFirst;
 using Microsoft.EntityFrameworkCore;
+using systeminventory_sample.Models.DbFirst;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDbContext<inHouseSystemContext>(options =>
+builder.Services.AddDbContext<inHouseDbContext>(options =>
 {
     var path = builder.Configuration.GetConnectionString("inHouseDbConnection");
     options.UseSqlite(path);
