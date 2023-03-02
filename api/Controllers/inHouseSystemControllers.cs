@@ -31,6 +31,29 @@ public class inHouseSysmteController : ControllerBase
         return data;
     }
 
+    [HttpGet]
+    public IEnumerable<alldata> GetSystems()
+    {
+        var query = from system in _context.Systems
+                    join category in _context.SystemCategories
+                        on system.SystemCategory equals category.Id
+                    join control in _context.ProcessControls
+                        on system.ProcessControl equals control.Id
+                    select new alldata
+                    {
+                        Id = system.Id,
+                        SystemCategory = system.SystemCategory,
+                        CategoryName = category.Name,
+                        Name = system.Name,
+                        Detail = system.Detail,
+                        ProcessControl = system.ProcessControl,
+                        ProcessName = control.Name
+                    };
+
+        return query.ToList();
+
+    }
+
     // GETリクエストに対するアクションメソッドの指定
     [HttpGet("{id}")]
     public async Task<ActionResult<inHouseSystem>> GetSystem(string id)
@@ -92,4 +115,22 @@ public class inHouseSysmteController : ControllerBase
         // 追加したシステムを返す
         return CreatedAtAction(nameof(Get), new { id = system.Id }, system);
     }
+}
+
+public class alldata
+{
+    public string? Id { get; set; }
+
+    public long? SystemCategory { get; set; }
+
+    public string? CategoryName { get; set; }
+
+    public string? Name { get; set; }
+
+    public string? Detail { get; set; }
+
+    public long? ProcessControl { get; set; }
+
+    public string? ProcessName { get; set; }
+
 }

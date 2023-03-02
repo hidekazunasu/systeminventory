@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiserviceService {
-  readonly apiUrl = 'https://localhost:7043/inHouseSysmte/api/inHouseSystem';  // APIのURL
+  readonly apiUrl = 'https://localhost:7043/inHouseSysmte';  // APIのURL
   readonly apiUrl2 = 'https://localhost:7043/Process';  // 別のAPIのURL
   readonly apiUrl3 = 'https://localhost:7043/SystemCategories';  // 別のAPIのURL
   constructor(private http: HttpClient) { }
