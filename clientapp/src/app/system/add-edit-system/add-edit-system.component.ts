@@ -22,11 +22,11 @@ export class AddEditSystemComponent implements OnInit {
   ProcessControlList: any = [];
 
   ngOnInit(): void {
-    this.Id = this.depart.Id;
-    this.Name = this.depart.Name;
-    this.Detail = this.depart.Detail;
-    this.ProcessControl = this.depart.ProcessControl;
-    this.SystemCategory = this.depart.SystemCategory;
+    this.Id = this.depart.id;
+    this.Name = this.depart.name;
+    this.Detail = this.depart.detail;
+    this.ProcessControl = this.depart.processName;
+    this.SystemCategory = this.depart.categoryName;
     this.service.getCategories().subscribe(data => {
       this.CategoryList = data;
     });
