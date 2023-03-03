@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\systeminventory_sample.props" />
+</Project>

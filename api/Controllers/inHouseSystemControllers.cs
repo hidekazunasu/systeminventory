@@ -20,16 +20,6 @@ public class inHouseSysmteController : ControllerBase
     }
 
     // GETリクエストに対するアクションメソッドの指定
-    [HttpGet]
-    [Route("api/inHouseSystem")]
-
-    public async Task<ActionResult<IEnumerable<inHouseSystem>>> Get()
-    {
-        // データの取得
-        var data = await _context.Systems.ToListAsync();
-        // 取得したデータを返す
-        return data;
-    }
 
     [HttpGet]
     public IEnumerable<alldata> GetSystems()
@@ -56,18 +46,24 @@ public class inHouseSysmteController : ControllerBase
 
     // GETリクエストに対するアクションメソッドの指定
     [HttpGet("{id}")]
-    public async Task<ActionResult<inHouseSystem>> GetSystem(string id)
+    public IEnumerable<alldata> GetSystem(string id)
     {
         // 指定されたIDのシステムを取得
-        var system = await _context.Systems.FindAsync(id);
-        // システムが存在しない場合は404を返す
-        if (system == null)
-        {
-            return NotFound();
-        }
-        // 取得したシステムを返す
-        return system;
-
+        var result = from system in _context.Systems
+                     join category in _context.SystemCategories on system.SystemCategory equals category.Id
+                     join process in _context.ProcessControls on system.ProcessControl equals process.Id
+                     where system.Id == id
+                     select new alldata
+                     {
+                         Id = system.Id,
+                         SystemCategory = system.SystemCategory,
+                         CategoryName = category.Name,
+                         Name = system.Name,
+                         Detail = system.Detail,
+                         ProcessControl = system.ProcessControl,
+                         ProcessName = process.Name
+                     };
+        return result;
     }
 
     // PUTリクエストに対するアクションメソッドの指定
@@ -113,7 +109,7 @@ public class inHouseSysmteController : ControllerBase
         // 変更をデータベースに保存
         await _context.SaveChangesAsync();
         // 追加したシステムを返す
-        return CreatedAtAction(nameof(Get), new { id = system.Id }, system);
+        return CreatedAtAction(nameof(GetSystems), new { id = system.Id }, system);
     }
 }
 

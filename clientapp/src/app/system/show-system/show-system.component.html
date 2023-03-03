@@ -1,8 +1,10 @@
+<!--
 <button type="button" class="btn btn-primary m-2 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal"
   (click)="addClick()">
-  <!-- 情報システム追加ボタン -->
+   情報システム追加ボタン 
   情報システム追加
 </button>
+-->
 
 <!-- Modal（ポップアップダイアログ） -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -133,8 +135,10 @@
         </div>
         進行管理区分
       </th>
+      <!--
       <th>Options</th>
     </tr>
+    -->
   </thead>
   <tbody>
     <tr *ngFor="let dataItem of SystemList">
@@ -144,6 +148,7 @@
       <td>{{dataItem.categoryName}}</td>
       <td>{{dataItem.processName}}</td>
       <td>
+        <!--
         <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
           (click)="editClick(dataItem)" data-backdrop="static" data-keyboard="false">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
@@ -162,6 +167,7 @@
           </svg>
         </button>
       </td>
+      -->
     </tr>
   </tbody>
 </table>
