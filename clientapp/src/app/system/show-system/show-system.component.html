@@ -34,6 +34,7 @@
     <tr>
       <th>
         <div class="d-flex flex-row">
+          <!-- ngModelでテキストボックスに対する入力値をTypescriptに反映させそれを用いてFilterを行う。 -->
           <input class="form-control m-2" [(ngModel)]="SystemIdFilter" (keyup)="FilterFn()" placeholder="Filter">
           <button type="button" class="btn btn-light" (click)="sortResult('id',true)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
